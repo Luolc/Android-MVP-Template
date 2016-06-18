@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<template
+        format="5"
+        revision="6"
+        name="MVP Basic Activity"
+        minApi="7"
+        minBuildApi="14"
+        requireAppTheme="true"
+        description="Creates a new MVP basic activity with an app bar.">
+
+    <category value="Activity"/>
+    <formfactor value="Mobile"/>
+
+    <parameter
+            id="activityPrefix"
+            name="Activity Prefix"
+            type="string"
+            constraints="class|unique|nonempty"
+            default="Main"
+            help="The prefix of the activity class to create"/>
+
+    <parameter
+            id="layoutPrefix"
+            name="Layout Prefix"
+            type="string"
+            constraints="layout|unique|nonempty"
+            suggest="${classToResource(activityPrefix)}"
+            default="main"
+            help="The prefix of the layout to create for the activity"/>
+
+    <parameter
+            id="activityClass"
+            name="Activity Name"
+            type="string"
+            constraints="class|unique|nonempty"
+            suggest="${activityPrefix}Activity"
+            default="MainActivity"
+            visibility="false"
+            help="The name of the activity class to create" />
+
+    <parameter
+            id="contractClass"
+            name="Contract Name"
+            type="string"
+            constraints="class|unique|nonempty"
+            suggest="${activityPrefix}Contract"
+            default="MainContract"
+            visibility="false"
+            help="The name of the contract class to create" />
+
+    <parameter
+            id="fragmentClass"
+            name="Fragment Name"
+            type="string"
+            constraints="class|unique|nonempty"
+            suggest="${activityPrefix}Fragment"
+            default="MainFragment"
+            visibility="false"
+            help="The name of the fragment class to create" />
+
+    <parameter
+            id="presenterClass"
+            name="Presenter Name"
+            type="string"
+            constraints="class|unique|nonempty"
+            suggest="${activityPrefix}Presenter"
+            default="MainPresenter"
+            visibility="false"
+            help="The name of the presenter class to create" />
+
+    <parameter
+            id="activityLayoutName"
+            name="Activity Layout Name"
+            type="string"
+            constraints="layout|unique|nonempty"
+            suggest="${layoutPrefix}_act"
+            default="main_act"
+            visibility="false"
+            help="The name of the activity layout" />
+
+    <parameter
+            id="contentLayoutName"
+            name="Content Layout Name"
+            type="string"
+            constraints="layout|unique|nonempty"
+            suggest="${layoutPrefix}_frag"
+            default="main_frag"
+            visibility="false"
+            help="The name of the content fragment layout" />
+
+    <parameter
+            id="isLauncher"
+            name="Launcher Activity"
+            type="boolean"
+            default="false"
+            help="If true, this activity will have a CATEGORY_LAUNCHER intent filter, making it visible in the launcher"/>
+
+    <parameter
+            id="parentActivityClass"
+            name="Hierarchical Parent"
+            type="string"
+            constraints="activity|exists|empty"
+            default=""
+            help="The hierarchical parent activity, used to provide a default implementation for the 'Up' button"/>
+
+    <parameter
+            id="packageName"
+            name="Package name"
+            type="string"
+            constraints="package"
+            default="com.mycompany.myapp"/>
+
+    <!-- 128x128 thumbnails relative to template.xml -->
+    <thumbs>
+        <!-- default thumbnail is required -->
+        <thumb>template_mvp_basic_activity.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl"/>
+    <execute file="recipe.xml.ftl"/>
+
+</template>
